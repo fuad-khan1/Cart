@@ -9,14 +9,19 @@
 </head>
 
 <body>
+  <!-- -------  Container --------->
   <div class="container mx-auto p-5">
+
+    <!-- -------  product-section --------->
     <section class="product-section grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- -------  Card 1 --------->
       <div class="card w-80  rounded shadow-lg">
         <img src="assets/Phone.jpg" alt="Product img" class="w-full h-48 object-cover rounded-t-lg">
         <div class="p-4">
           <h2 class="text-2xl font-semibold">Product Name</h2>
           <p class=" mt-2">$19.99</p>
-          <button class="mt-4 bg-blue-400 text-white hover:bg-blue-600 px-4 py-2 rounded-full">Add to Cart</button>
+          <button class="add-to-cart mt-4 bg-blue-400 text-white hover:bg-blue-600 px-4 py-2 rounded-full">Add to Cart</button>
         </div>
       </div>
       <div class="card w-80  rounded shadow-lg">
@@ -60,13 +65,19 @@
         </div>
       </div>
     </section>
-    <section class="cart-section ">
-      cart
+
+     <!-- ------ Cart Section --- -->
+    <section class="cart-section  ">
+      <h2 class="text-2xl font-semibold mb-4">Shopping Cart</h2>
+      <ul id="cart-items" class="list-none">
+
+
+      </ul>
+      <p id="total-price">Total: $0.00</p>
     </section>
 
   </div>
-  <a href="#" class="fixed right-0 top-48 bg-green-600 text-white  px-4 py-2 rounded-full">Cart</a>
-
+  <button class="fixed right-0 top-1/3 bg-green-600 text-white  px-4 py-2 rounded-full">Cart</button>
 
   <script src="index.js"></script>
 </body>
