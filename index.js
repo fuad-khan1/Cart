@@ -13,11 +13,12 @@ const updateCart = () => {
 
   cart.forEach((item, index) => {
     const listItem = document.createElement("li");
-    listItem.innerHTML = `${item.name} => Price: ${item.price} <button class="rounded-lg p-2 hover:bg-red-500 bg-red-300 text-white pi-2 mb-2 ml-2 delete-item" data-index="${index}">Remove</button>`;
+    listItem.innerHTML = `${item.name} => Price: ${item.price} <button class="rounded-lg p-1 hover:bg-red-500 bg-red-300 text-white mb-2 delete-item" data-index="${index}">Remove</button>`;
     cartItemsList.appendChild(listItem);
     totalPrice += item.price;
   });
   totalPriceElement.innerHTML = `Total: $${totalPrice}`;
+  cartButton.innerHTML = `Cart <sup>${cart.length}</sup>`;
 
   const deleteButtons = document.querySelectorAll(".delete-item");
   deleteButtons.forEach((button) => {
@@ -36,9 +37,14 @@ addToCart.forEach((button, index) => {
     const productPrice = parseFloat(
       document.querySelectorAll(".card p")[index].textContent
     );
-    const product = { name: productName, price: productPrice };
-    cart.push(product);
-    updateCart();
+    const productIndex = cart.findIndex((item) => item.name === productName);
+    if (productIndex === -1) {
+      const product = { name: productName, price: productPrice };
+      cart.push(product);
+      updateCart();
+    } else {
+      alert("This item is already added");
+    }
   });
 });
 
