@@ -6,6 +6,7 @@ const cartItemsList = document.getElementById("cart-items");
 const cartPrompt = document.querySelector(".cart-section");
 const productSection = document.getElementById("product-section");
 const cartButton = document.getElementById("cart-icon");
+const closeCart = document.getElementById("close-cart");
 
 //------Update cart function ---------//
 const updateCart = () => {
@@ -14,13 +15,21 @@ const updateCart = () => {
   cart.forEach((item, index) => {
     const listItem = document.createElement("li");
     listItem.innerHTML = `
-   <div class="flex items-center ">
-   <div><img src="${item.image}" class="w-14 mr-4 rounded"  alt="image"></div>
-   <div>
-   <p>${item.name} <i class="fa-solid fa-trash-can ml-3 delete-item  text-red-400 hover:text-red-700 cursor-pointer" data-index=${index} ></i></p>
-   <p> $${item.price}</p> 
-   </div>
-   </div>   
+    <div class="flex items-center justify-between py-2 border-b border-gray-300">
+    <div class="flex items-center">
+      <div>
+        <img src="${item.image}" class="w-12 h-12 rounded" alt="${item.name} image">
+      </div>
+      <div class="ml-4">
+        <p class="text-lg font-medium">${item.name}</p>
+        <p class="text-gray-600">$${item.price}</p>
+      </div>
+    </div>
+    <div>
+      <i class="fa-solid fa-trash-can delete-item text-red-400 hover:text-red-700 cursor-pointer" data-index="${index}"></i>
+    </div>
+  </div>
+    
       `;
     cartItemsList.appendChild(listItem);
     totalPrice += item.price;
@@ -94,8 +103,14 @@ fetch("https://dummyjson.com/products")
     });
   });
 
-// ---------  -------//
+//-----close cart ---////
+closeCart.addEventListener("click", () => {
+  cartPrompt.classList.add("hidden");
+  cartButton.classList.remove("hidden");
+});
+
+// --------- toggle cart icon  -------//
 cartButton.addEventListener("click", () => {
-  cartPrompt.classList.toggle("hidden");
-  // cartButton.classList.toggle("block");
+  cartButton.classList.add("hidden");
+  cartPrompt.classList.remove("hidden");
 });
