@@ -58,7 +58,7 @@ fetch("https://dummyjson.com/products")
 
     productsToDisplay.forEach((product, index) => {
       const card = document.createElement("div");
-      card.className = "card w-80 rounded shadow-lg overflow-hidden";
+      card.className = "card rounded shadow-lg overflow-hidden";
       card.innerHTML = `
      
       <img id="Product-img" src="${product.thumbnail}" alt="Product img" class="w-full h-48 object-cover rounded-t-lg transition-transform transform hover:-translate-y-1 hover:scale-110 duration-300 group-hover:scale-110 ">
@@ -66,12 +66,20 @@ fetch("https://dummyjson.com/products")
       <div class="p-4">
         <h2 class="text-2xl font-semibold">${product.title}</h2>
 
-        <p><i class="fa-solid fa-star text-yellow-400"></i> <i class="fa-solid fa-star text-yellow-400"></i> <i class="fa-solid fa-star text-yellow-400"></i> <i class="fa-solid fa-star text-yellow-400"></i> <i class="fa-solid fa-star-half-stroke text-yellow-400"></i></p>
+        <p class="my-2">
+        <i class="fa-solid fa-star text-yellow-400"></i> 
+        <i class="fa-solid fa-star text-yellow-400"></i> 
+        <i class="fa-solid fa-star text-yellow-400"></i> 
+        <i class="fa-solid fa-star text-yellow-400"></i> 
+        <i class="fa-solid fa-star-half-stroke text-yellow-400"></i>
+        </p>
 
         <p class="my-2">$${product.price}</p>
         
         <i  class="add-to-cart fa-solid fa-bag-shopping text-xl border rounded-full  text-orange-500 px-2 py-1 cursor-pointer hover:bg-orange-500 hover:text-white hover:transition ease-in-out duration-700 "></i>
+
         <i  class="fa-regular fa-eye text-xl border rounded-full  text-orange-500 px-2 py-1 cursor-pointer hover:bg-orange-500 hover:text-white hover:transition ease-in-out duration-700 "></i>
+        
         <i  class="fa-regular fa-heart text-xl border rounded-full  text-orange-500 px-2 py-1 cursor-pointer hover:bg-orange-500 hover:text-white hover:transition ease-in-out duration-700 "></i>
       </div>
       
