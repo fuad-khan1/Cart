@@ -8,7 +8,7 @@ const productSection = document.getElementById("product-section");
 const cartButton = document.getElementById("cart-icon");
 const closeCart = document.getElementById("close-cart");
 
-//------Update cart function ---------//
+//------Update cart function start ---------//
 const updateCart = () => {
   cartItemsList.innerHTML = "";
   totalPrice = 0;
@@ -37,6 +37,7 @@ const updateCart = () => {
   totalPriceElement.innerHTML = `Total Price: $${totalPrice}`;
   cartButton.innerHTML = `<sup> ${cart.length}</sup>`;
 
+  ////------- Delete Button ------------//////
   const deleteButtons = document.querySelectorAll(".delete-item");
   deleteButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -46,6 +47,7 @@ const updateCart = () => {
     });
   });
 };
+//------Update cart function end ---------//
 
 //------- data fetching ---------------//
 fetch("https://dummyjson.com/products")
@@ -61,18 +63,20 @@ fetch("https://dummyjson.com/products")
       card.className = "card rounded shadow-lg overflow-hidden";
       card.innerHTML = `
      
-      <img id="Product-img" src="${product.thumbnail}" alt="Product img" class="w-full h-48 object-cover rounded-t-lg transition-transform transform hover:-translate-y-1 hover:scale-110 duration-300 group-hover:scale-110 ">
+      <img id="Product-img" src="${product.thumbnail}" alt="Product img" class="w-full h-64 object-cover rounded-t-lg transition-transform transform hover:-translate-y-1 hover:scale-110 duration-300 group-hover:scale-110 ">
      
       <div class="p-4">
-        <h2 class="text-2xl font-semibold">${product.title}</h2>
+        <h2 class="text-xl font-semibold mb-2">${product.title}</h2>
 
-        <p class="my-2">
-        <i class="fa-solid fa-star text-yellow-400"></i> 
-        <i class="fa-solid fa-star text-yellow-400"></i> 
-        <i class="fa-solid fa-star text-yellow-400"></i> 
-        <i class="fa-solid fa-star text-yellow-400"></i> 
-        <i class="fa-solid fa-star-half-stroke text-yellow-400"></i>
+       <div class="mb-2 flex items-center">
+        <p class="text-yellow-400 my-2">
+          <i class="fa-solid fa-star "></i> 
+          <i class="fa-solid fa-star "></i> 
+          <i class="fa-solid fa-star "></i> 
+          <i class="fa-solid fa-star "></i> 
+          <i class="fa-solid fa-star-half-stroke"></i>
         </p>
+       </div>
 
         <p class="my-2">$${product.price}</p>
         
@@ -82,8 +86,6 @@ fetch("https://dummyjson.com/products")
         
         <i  class="fa-regular fa-heart text-xl border rounded-full  text-orange-500 px-2 py-1 cursor-pointer hover:bg-orange-500 hover:text-white hover:transition ease-in-out duration-700 "></i>
       </div>
-      
-    
       `;
 
       productSection.appendChild(card);
