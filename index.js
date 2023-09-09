@@ -56,31 +56,35 @@ fetch("https://dummyjson.com/products")
     console.log("Data=>", data);
     productSection.innerHTML = "";
 
-    const productsToDisplay = data.products.slice(0, 6);
+    const productsToDisplay = data.products.slice(2, 8);
 
     productsToDisplay.forEach((product, index) => {
       const card = document.createElement("div");
-      card.className = "card rounded shadow-lg overflow-hidden";
+      card.className =
+        "card  bg-gray-50 border border-gray-100 rounded-md  shadow-lg overflow-hidden";
       card.innerHTML = `
+      <div class="h-[300px]">
+      <img id="Product-img" src="${product.thumbnail}" alt="Product img" class="w-full h-full object-cover rounded-t-lg transition-transform transform hover:-translate-y-1 hover:scale-110 duration-300 group-hover:scale-110 ">
+      </div>
+      
      
-      <img id="Product-img" src="${product.thumbnail}" alt="Product img" class="w-full h-64 object-cover rounded-t-lg transition-transform transform hover:-translate-y-1 hover:scale-110 duration-300 group-hover:scale-110 ">
-     
-      <div class="p-4">
-        <h2 class="text-xl font-semibold mb-2">${product.title}</h2>
 
-       <div class="mb-2 flex items-center">
-        <p class="text-yellow-400 my-2">
+    <div class="p-4">
+      <h2 class="text-xl font-semibold mb-2">${product.title}</h2>
+
+    <div class="mb-2 flex items-center">
+      <p class="text-yellow-400 my-2">
           <i class="fa-solid fa-star "></i> 
           <i class="fa-solid fa-star "></i> 
           <i class="fa-solid fa-star "></i> 
           <i class="fa-solid fa-star "></i> 
           <i class="fa-solid fa-star-half-stroke"></i>
-        </p>
-       </div>
+      </p>
+    </div>
 
-        <p class="my-2">$${product.price}</p>
+        <p class="my-2 ">$${product.price}</p>
         
-        <i  class="add-to-cart fa-solid fa-bag-shopping text-xl border rounded-full  text-orange-500 px-2 py-1 cursor-pointer hover:bg-orange-500 hover:text-white hover:transition ease-in-out duration-700 "></i>
+        <i  class="add-to-cart fa-solid fa-bag-shopping text-xl border rounded-full  text-orange-500 px-2 py-1 cursor-pointer        hover:bg-orange-500 hover:text-white hover:transition ease-in-out duration-700 "></i>
 
         <i  class="fa-regular fa-eye text-xl border rounded-full  text-orange-500 px-2 py-1 cursor-pointer hover:bg-orange-500 hover:text-white hover:transition ease-in-out duration-700 "></i>
         
