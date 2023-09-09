@@ -12,40 +12,51 @@ const closeCart = document.getElementById("close-cart");
 const updateCart = () => {
   cartItemsList.innerHTML = "";
   totalPrice = 0;
-  cart.forEach((item, index) => {
-    const listItem = document.createElement("li");
-    listItem.innerHTML = `
-    <div class="flex items-center justify-between py-2 border-b border-gray-300">
-    <div class="flex items-center">
+  
+  if (cart.length===0) {
+    cartItemsList.innerHTML=  ` Cart is Empty !`
+  }
+  else{
+    cart.forEach((item, index) => {
+      const listItem = document.createElement("li");
+      listItem.innerHTML = `
+      <div class="flex items-center justify-between py-2 border-b border-gray-300">
+      <div class="flex items-center">
+        <div>
+          <img src="${item.image}" class="w-12 h-12 rounded" alt="${item.name} image">
+        </div>
+        <div class="ml-4">
+          <p class="text-lg font-medium">${item.name}</p>
+          <p class="text-gray-600">$${item.price}</p>
+        </div>
+      </div>
       <div>
-        <img src="${item.image}" class="w-12 h-12 rounded" alt="${item.name} image">
-      </div>
-      <div class="ml-4">
-        <p class="text-lg font-medium">${item.name}</p>
-        <p class="text-gray-600">$${item.price}</p>
+        <i class="fa-solid fa-trash-can delete-item text-red-400 hover:text-red-700 cursor-pointer" data-index="${index}"></i>
       </div>
     </div>
-    <div>
-      <i class="fa-solid fa-trash-can delete-item text-red-400 hover:text-red-700 cursor-pointer" data-index="${index}"></i>
-    </div>
-  </div>
-    
-      `;
-    cartItemsList.appendChild(listItem);
-    totalPrice += item.price;
-  });
-  totalPriceElement.innerHTML = `Total Price: $${totalPrice}`;
-  cartButton.innerHTML = `<sup> ${cart.length}</sup>`;
-
-  ////------- Delete Button ------------//////
-  const deleteButtons = document.querySelectorAll(".delete-item");
-  deleteButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const index = button.getAttribute("data-index");
-      cart.splice(index, 1);
-      updateCart();
+      
+        `;
+      cartItemsList.appendChild(listItem);
+      totalPrice += item.price;
     });
-  });
+  
+
+    
+    totalPriceElement.innerHTML = `Total Price: $${totalPrice}`;
+  }
+    cartButton.innerHTML = `<sup> ${cart.length}</sup>`;
+  
+    ////------- Delete Button ------------//////
+    const deleteButtons = document.querySelectorAll(".delete-item");
+    deleteButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const index = button.getAttribute("data-index");
+        cart.splice(index, 1);
+        updateCart();
+      });
+    });
+  
+ 
 };
 //------Update cart function end ---------//
 
@@ -127,4 +138,7 @@ closeCart.addEventListener("click", () => {
 cartButton.addEventListener("click", () => {
   cartButton.classList.add("hidden");
   cartPrompt.classList.remove("hidden");
+  updateCart()
+ 
+  
 });
