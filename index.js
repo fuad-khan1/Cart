@@ -8,6 +8,8 @@ const productSection = document.getElementById("product-section");
 const cartButton = document.getElementById("cart-icon");
 const closeCart = document.getElementById("close-cart");
 
+
+
 //------Update cart function start ---------//
 const updateCart = () => {
   cartItemsList.innerHTML = "";
