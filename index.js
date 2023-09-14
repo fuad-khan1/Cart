@@ -8,17 +8,14 @@ const productSection = document.getElementById("product-section");
 const cartButton = document.getElementById("cart-icon");
 const closeCart = document.getElementById("close-cart");
 
-
-
 //------Update cart function start ---------//
 const updateCart = () => {
   cartItemsList.innerHTML = "";
   totalPrice = 0;
-  
-  if (cart.length===0) {
-    cartItemsList.innerHTML=  ` Cart is Empty !`
-  }
-  else{
+
+  if (cart.length === 0) {
+    cartItemsList.innerHTML = ` Cart is Empty !`;
+  } else {
     cart.forEach((item, index) => {
       const listItem = document.createElement("li");
       listItem.innerHTML = `
@@ -41,24 +38,20 @@ const updateCart = () => {
       cartItemsList.appendChild(listItem);
       totalPrice += item.price;
     });
-  
-
-    
-    totalPriceElement.innerHTML = `Total Price: $${totalPrice}`;
   }
-    cartButton.innerHTML = `<sup> ${cart.length}</sup>`;
-  
-    ////------- Delete Button ------------//////
-    const deleteButtons = document.querySelectorAll(".delete-item");
-    deleteButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const index = button.getAttribute("data-index");
-        cart.splice(index, 1);
-        updateCart();
-      });
+  totalPriceElement.innerHTML = `Total Price: $${totalPrice}`;
+
+  cartButton.innerHTML = `<sup> ${cart.length}</sup>`;
+
+  ////------- Delete Button ------------//////
+  const deleteButtons = document.querySelectorAll(".delete-item");
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const index = button.getAttribute("data-index");
+      cart.splice(index, 1);
+      updateCart();
     });
-  
- 
+  });
 };
 //------Update cart function end ---------//
 
@@ -140,7 +133,5 @@ closeCart.addEventListener("click", () => {
 cartButton.addEventListener("click", () => {
   cartButton.classList.add("hidden");
   cartPrompt.classList.remove("hidden");
-  updateCart()
- 
-  
+  updateCart();
 });
